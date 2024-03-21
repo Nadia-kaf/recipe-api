@@ -8,4 +8,4 @@ const recipeSchema = new Schema({
     country: {type: String}
 });
 
-export const RecipeModel = model('Recipe',recipeSchema, 'recipes');
+export const RecipeModel = model('Recipe', recipeSchema, 'recipes');

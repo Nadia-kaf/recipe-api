@@ -3,9 +3,12 @@ import { RecipeModel } from "../models/recipe.js";
 export const addRecipe = async (req, res, next) => {
   try {
     //add recipe to the database
-    const createResult = await RecipeModel.create(req.body);
+    const createResult = await RecipeModel.create({
+      ...req.body,
+      image: req.file.filename
+    });
     //return response
-    res.json(createResult);
+    res.status(201).json(createResult);
   } catch (error) {
     //forward to express error handler
     next(error);
@@ -19,7 +22,7 @@ export const getRecipes = async (req, res, next) => {
     const result = await RecipeModel.find({});
 
     //return response
-    res.status(200).json(result);
+    res.status(201).json(result);
   } catch (error) {
     next(error);
   }
